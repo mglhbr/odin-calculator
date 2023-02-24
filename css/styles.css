@@ -55,13 +55,13 @@ body {
     flex-direction: column;
 }
 
-.calcOperation{
+#calcOperation{
     flex: 1;
     font-weight: 400;
     font-size: x-large;
 }
 
-.calcNum {
+#calcNum {
     flex: 2;
     display: flex;
     align-items: center;
