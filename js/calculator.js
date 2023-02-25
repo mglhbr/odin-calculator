@@ -19,7 +19,7 @@ function divide(num1, num2) {
     return num1 / num2;
 }
 
-function operate(operator, num1, num2){
+function operate(operator, num1, num2){ //should be called after a operator button is pressed
     if(operator==='add'){
         return add(num1, num2);
     }
@@ -34,30 +34,62 @@ function operate(operator, num1, num2){
     }
 }
 
-//Step 4: function that populate the display
-function populate(button) {
+function updateNumber(num) {
+    num = parseInt(num) //so it stores as int
+    console.log(num)
+
+    displayValue = (displayValue*10) + num
+    document.getElementById('calcNum').innerHTML= displayValue
+}
+
+//Button funcitons
+function clear(){
+    document.getElementById('calcNum').innerHTML= 0
+    displayValue = 0;
+    firstNumber = 0;
+    secondNumber = 0;
+}
+
+function deleteNumber(){
+    let numString = displayValue.toString()
+    numString = numString.slice(0,-1)
+    displayValue = numString
+    document.getElementById('calcNum').innerHTML= displayValue
+}
+
+//if a operation button is pressed, num1 should be saved
+
+
+//if = cutton is pressed, num2 should be saved & afterwards calculated
+
+
+
+//Step 4: Calculate function that ties everything together
+function calculator(button) {
     let num = button.innerHTML
 
     if (Number.isNaN(parseInt(num))){ //in this case it should operate and wait for new number
-        console.log(Number.isNaN(parseInt(num)))
+        if (button.getAttribute('id') === 'clear'){
+            clear();
+            return
+        }
+        else if (button.getAttribute('id') === 'delete'){
+            deleteNumber();
+            return
+        }
+
         return 
     }
     else { //should update the number
-        num = parseInt(num) //so it stores as int
-        console.log(num)
-
-        displayValue = (displayValue*10) + num
-        document.getElementById('calcNum').innerHTML= displayValue
-        return
+        return updateNumber(num)
     }
     
 }
 
-
-//clickable buttons
+//clickable buttons --> call functions
 buttons.forEach(button =>{ 
     button.addEventListener('click', () => {
-        populate(button);
+        calculator(button);
     });
 })
 
