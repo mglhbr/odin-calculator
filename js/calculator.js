@@ -62,7 +62,7 @@ function clear(){
 function deleteNumber(){
     let numString = displayValue.toString()
     numString = numString.slice(0,-1)
-    displayValue = numString
+    displayValue = parseInt(numString) //turn string back to int fixed bug
     document.getElementById('calcNum').innerHTML= displayValue
 }
 
