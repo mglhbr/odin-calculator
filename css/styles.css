@@ -72,6 +72,19 @@ body {
 
 
 /*Buttons*/
+.btn {
+    cursor: pointer; /*changes pointer style*/
+} 
+/*hover and click darker*/
+ .btn:hover {
+    background-image: linear-gradient(rgb(0 0 0/20%) 0 0);
+  }
+
+  .btn:active {
+    background-image: linear-gradient(rgb(0 0 0/35%) 0 0);
+  }
+
+ 
 .calcButtons {
     flex: auto;
     background-color: rgb(188, 186, 186);
@@ -97,6 +110,12 @@ body {
 .operator {
     background-color: rgb(102, 119, 121);
     color: whitesmoke;
+}
+
+/*remove this when 'dot'-button is implemented*/
+#dot {
+    border: 0px;
+    background-color: rgb(188, 186, 186);
 }
 
 /*FOOTER STYLES*/

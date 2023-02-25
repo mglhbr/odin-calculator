@@ -121,7 +121,7 @@ function equals(){
         document.getElementById('calcNum').innerHTML= displayValue
     
         //Operation is updated
-        displayOperation = displayOperation + ' '+ secondNumber
+        displayOperation = displayOperation + ' ' + secondNumber + ' ='
         document.getElementById('calcOperation').innerHTML= displayOperation
 
         canEquals=0;
@@ -132,7 +132,7 @@ function equals(){
 }
 
 
-//if dot(.) button is pressed:
+//if dot(.) button is pressed: DIDNT IMPLEMENT IT YET
 
 
 
