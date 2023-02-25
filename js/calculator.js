@@ -6,7 +6,7 @@ let displayOperation='';
 let firstNumber = 0;
 let secondNumber = 0;
 let currentOperator = '';
-let canOperate = 1; // 0=no 1=yes
+let canOperate = 1; // 0=no 1=yes, 2=stirng the operation
 let canEquals = 0; // 0=no 1=yes
 
 
@@ -60,10 +60,19 @@ function clear(){
 }
 
 function deleteNumber(){
-    let numString = displayValue.toString()
-    numString = numString.slice(0,-1)
-    displayValue = parseInt(numString) //turn string back to int fixed bug
-    document.getElementById('calcNum').innerHTML= displayValue
+    if (displayValue>=10){
+        let numString = displayValue.toString()
+        numString = numString.slice(0,-1)
+        displayValue = parseInt(numString) //turn string back to int fixed bug
+        document.getElementById('calcNum').innerHTML= displayValue
+        return
+    }
+    else if (displayValue<10 && displayValue !== 0){
+        displayValue = 0;
+        document.getElementById('calcNum').innerHTML= displayValue
+        return
+    }
+    else {return} 
 }
 
 //if a operation button is pressed:
@@ -82,9 +91,22 @@ function updateOperation(button){
         displayOperation = firstNumber + ' ' + button.innerHTML
         document.getElementById('calcOperation').innerHTML= displayOperation
 
-        canOperate=0;
+        canOperate=2;
         canEquals=1;
         return
+    }
+    //so you can string the operations together //struggled hard with this implementation
+    else if(canOperate===2){
+        secondNumber = displayValue
+        let res = operate(currentOperator, firstNumber, secondNumber)
+        currentOperator = button.getAttribute('id') //is after the calculation, so the last operand is used, not the new
+
+        displayOperation = res + ' ' + button.innerHTML
+        document.getElementById('calcOperation').innerHTML= displayOperation
+
+        firstNumber = res
+        displayValue = 0
+        document.getElementById('calcNum').innerHTML= displayValue
     }
     else {return}
 }
